@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#454545',
+        backgroundColor: '#202020eb',
         flex: 1
     },
     header: {
@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
         right: 0,
         top: 0,
         backgroundColor: '#0D0D0D'
+    },
+    containerImageLogo: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 70
     },
     containerAdd: {
         flexDirection: 'row',
@@ -36,6 +41,7 @@ export const styles = StyleSheet.create({
         borderColor: '#0D0D0D',
         borderRadius: 6,
         flexGrow: 1,
+        color: '#f2f2f2'
     },
     buttonAdd: {
         flexDirection: 'row',
@@ -45,7 +51,8 @@ export const styles = StyleSheet.create({
         width: 52,
         height: 52,
         backgroundColor: '#1e6f9f',
-        borderRadius: 6
+        borderRadius: 6,
+        marginLeft: 3
     },
     textButton: {
         color: '#fff'
@@ -104,5 +111,24 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 17,
         color: '#8284fa'
+    },
+    containerEmpty: {
+        margin: 20
+    },
+    containerImageEmpty: {
+        alignItems: 'center',
+        marginBottom: 10
+    },
+    firstTextEmpty: {        
+        fontWeight: '700',
+        fontSize: 14,        
+        textAlign: 'center',
+        color: '#808080',
+        lineHeight: 25
+    },
+    secondTextEmpty: {
+        fontSize: 14,
+        textAlign: 'center',
+        color: '#808080'
     }
 });
