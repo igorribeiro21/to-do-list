@@ -8,6 +8,7 @@ import {
     Image,
     Alert
 } from "react-native";
+import { Task } from '../../components/Task';
 import { styles } from "./styles";
 
 interface ItemTask {
@@ -18,6 +19,8 @@ interface ItemTask {
 export default function Home() {
     const [listTasks, setListTasks] = useState<ItemTask[]>([]);
     const [taskAdd, setTaskAdd] = useState<string>('');
+    const [totalCreate,setTotalCreate] = useState<number>(0);
+    const [totalDone, setTotalDone] = useState<number>(0);
 
     function handleTaskAdd() {
         const verifyIncludeList = listTasks?.find(item => item.task === taskAdd);
@@ -33,6 +36,7 @@ export default function Home() {
 
         setListTasks(prevState => [...prevState, newItem]);
         setTaskAdd('');
+        setTotalCreate(prevState => (prevState + 1))
     }
 
     return (
@@ -64,21 +68,22 @@ export default function Home() {
                     <View style={styles.containerTotal}>
                         <View style={styles.containerTotalCriadas}>
                             <Text style={styles.textCriadas}>Criadas</Text>
-                            <Text style={styles.textTotal}>0</Text>
+                            <Text style={styles.textTotal}>{totalCreate}</Text>
                         </View>
                         <View style={styles.containerTotalConcluidas}>
                             <Text style={styles.textConcluidas}>Concluídas</Text>
-                            <Text style={styles.textTotal}>0</Text>
+                            <Text style={styles.textTotal}>{totalDone}</Text>
                         </View>
                     </View>
-                    <View>
+                    <View>                        
                         <FlatList
                             data={listTasks}
                             keyExtractor={item => item.task}
                             renderItem={({ item }) => (
-                                <View>
-                                    <Text>{item.task}</Text>
-                                </View>
+                               <Task 
+                               name={item.task}
+                               done={item.finished}
+                               />
                             )}
                             showsVerticalScrollIndicator={false}
                             ListEmptyComponent={() => (
