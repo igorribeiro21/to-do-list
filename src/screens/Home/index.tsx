@@ -19,7 +19,7 @@ interface ItemTask {
 export default function Home() {
     const [listTasks, setListTasks] = useState<ItemTask[]>([]);
     const [taskAdd, setTaskAdd] = useState<string>('');
-    const [totalCreate,setTotalCreate] = useState<number>(0);
+    const [totalCreate, setTotalCreate] = useState<number>(0);
     const [totalDone, setTotalDone] = useState<number>(0);
 
     function handleTaskAdd() {
@@ -37,6 +37,24 @@ export default function Home() {
         setListTasks(prevState => [...prevState, newItem]);
         setTaskAdd('');
         setTotalCreate(prevState => (prevState + 1))
+    }
+
+    function doneTask(i: number) {
+        const newList = listTasks.map((item, index) => {
+            if (index === i) {
+                const updatedItem = {
+                    ...item,
+                    finished: true,
+                };
+
+                return updatedItem;
+            }
+
+            return item;
+        });
+
+        setListTasks(newList);
+
     }
 
     return (
@@ -75,30 +93,32 @@ export default function Home() {
                             <Text style={styles.textTotal}>{totalDone}</Text>
                         </View>
                     </View>
-                    <View>                        
-                        <FlatList
-                            data={listTasks}
-                            keyExtractor={item => item.task}
-                            renderItem={({ item }) => (
-                               <Task 
-                               name={item.task}
-                               done={item.finished}
-                               />
-                            )}
-                            showsVerticalScrollIndicator={false}
-                            ListEmptyComponent={() => (
-                                <View style={styles.containerEmpty}>
-                                    <View style={styles.containerImageEmpty}>
-                                        <Image
-                                            source={require('../../images/clipboard.jpg')}
-                                        />
-                                    </View>
-                                    <Text style={styles.firstTextEmpty}>Você ainda não tem tarefas cadastradas</Text>
-                                    <Text style={styles.secondTextEmpty}>Crie tarefas e organize seus itens a fazer</Text>
+
+                    <FlatList
+                        data={listTasks}
+                        keyExtractor={item => item.task}
+                        renderItem={({ item, index }) => (
+                            <Task
+                                index={index}
+                                name={item.task}
+                                done={item.finished}
+                                doneTask={() => doneTask(index)}
+                            />
+                        )}
+                        showsVerticalScrollIndicator={false}
+                        ListEmptyComponent={() => (
+                            <View style={styles.containerEmpty}>
+                                <View style={styles.containerImageEmpty}>
+                                    <Image
+                                        source={require('../../images/clipboard.jpg')}
+                                    />
                                 </View>
-                            )}
-                        />
-                    </View>
+                                <Text style={styles.firstTextEmpty}>Você ainda não tem tarefas cadastradas</Text>
+                                <Text style={styles.secondTextEmpty}>Crie tarefas e organize seus itens a fazer</Text>
+                            </View>
+                        )}
+                    />
+
                 </View>
             </View>
         </View>

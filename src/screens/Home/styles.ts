@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         padding: 0,
         position: 'absolute',
-        height: 247,
+        height: 391,
         left: 24,
         right: 24,
         top: 228
@@ -73,7 +73,8 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-end',
         padding: 0,
         width: 327,
-        height: 19
+        height: 19,
+        marginBottom: 15
     },
     containerTotalCriadas: {
         flexDirection: 'row',
