@@ -46,7 +46,14 @@ export function Task({
                 )}
             </View>
             <View style={styles.containerText}>
-                <Text style={styles.text}>{name}</Text>
+                <Text style={
+                    [styles.text,
+                    {
+                        textDecorationLine: done ? 'line-through' : 'none',
+                        opacity:  done ? 0.2 : 1
+                    }
+                   
+                ]}>{name}</Text>
             </View>
             <TouchableOpacity>
                 <Image

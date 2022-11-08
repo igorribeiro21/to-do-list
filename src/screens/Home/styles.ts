@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         padding: 0,
         position: 'absolute',
-        height: 391,
+        height: 350,
         left: 24,
         right: 24,
         top: 228
@@ -120,9 +120,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 10
     },
-    firstTextEmpty: {        
+    firstTextEmpty: {
         fontWeight: '700',
-        fontSize: 14,        
+        fontSize: 14,
         textAlign: 'center',
         color: '#808080',
         lineHeight: 25

@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: 327,
+        width: 312,
         height: 64,
         backgroundColor: '#262626',
         borderWidth: 1,
@@ -37,7 +37,8 @@ export const styles = StyleSheet.create({
         fontWeight: '400',
         fontSize: 14,
         lineHeight: 17,
-        color: '#f2f2f2'
+        color: '#f2f2f2',
+        textDecorationLine: 'line-through'
     },
     img: {
         position: 'absolute',

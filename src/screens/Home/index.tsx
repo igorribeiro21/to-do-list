@@ -54,7 +54,7 @@ export default function Home() {
         });
 
         setListTasks(newList);
-
+        setTotalDone(prevState => (prevState + 1));
     }
 
     return (
@@ -82,44 +82,44 @@ export default function Home() {
                         <Text style={styles.textButton}>+</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.containerList}>
-                    <View style={styles.containerTotal}>
-                        <View style={styles.containerTotalCriadas}>
-                            <Text style={styles.textCriadas}>Criadas</Text>
-                            <Text style={styles.textTotal}>{totalCreate}</Text>
-                        </View>
-                        <View style={styles.containerTotalConcluidas}>
-                            <Text style={styles.textConcluidas}>Concluídas</Text>
-                            <Text style={styles.textTotal}>{totalDone}</Text>
-                        </View>
+            </View>
+            <View style={styles.containerList}>
+                <View style={styles.containerTotal}>
+                    <View style={styles.containerTotalCriadas}>
+                        <Text style={styles.textCriadas}>Criadas</Text>
+                        <Text style={styles.textTotal}>{totalCreate}</Text>
                     </View>
-
-                    <FlatList
-                        data={listTasks}
-                        keyExtractor={item => item.task}
-                        renderItem={({ item, index }) => (
-                            <Task
-                                index={index}
-                                name={item.task}
-                                done={item.finished}
-                                doneTask={() => doneTask(index)}
-                            />
-                        )}
-                        showsVerticalScrollIndicator={false}
-                        ListEmptyComponent={() => (
-                            <View style={styles.containerEmpty}>
-                                <View style={styles.containerImageEmpty}>
-                                    <Image
-                                        source={require('../../images/clipboard.jpg')}
-                                    />
-                                </View>
-                                <Text style={styles.firstTextEmpty}>Você ainda não tem tarefas cadastradas</Text>
-                                <Text style={styles.secondTextEmpty}>Crie tarefas e organize seus itens a fazer</Text>
-                            </View>
-                        )}
-                    />
-
+                    <View style={styles.containerTotalConcluidas}>
+                        <Text style={styles.textConcluidas}>Concluídas</Text>
+                        <Text style={styles.textTotal}>{totalDone}</Text>
+                    </View>
                 </View>
+
+                <FlatList
+                    data={listTasks}
+                    keyExtractor={item => item.task}
+                    renderItem={({ item, index }) => (
+                        <Task
+                            index={index}
+                            name={item.task}
+                            done={item.finished}
+                            doneTask={() => doneTask(index)}
+                        />
+                    )}
+                    showsVerticalScrollIndicator={false}
+                    ListEmptyComponent={() => (
+                        <View style={styles.containerEmpty}>
+                            <View style={styles.containerImageEmpty}>
+                                <Image
+                                    source={require('../../images/clipboard.jpg')}
+                                />
+                            </View>
+                            <Text style={styles.firstTextEmpty}>Você ainda não tem tarefas cadastradas</Text>
+                            <Text style={styles.secondTextEmpty}>Crie tarefas e organize seus itens a fazer</Text>
+                        </View>
+                    )}
+                />
+
             </View>
         </View>
     );
