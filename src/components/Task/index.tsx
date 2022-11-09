@@ -2,17 +2,18 @@ import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './styles';
 
 interface TaskDTO {
-    index: number;
     name: string;
     done: boolean;
     doneTask: () => void;
+    removeTask: () => void;
 }
 
 export function Task({
     name,
     done,
-    index,
-    doneTask }: TaskDTO) {
+    doneTask,
+    removeTask
+}: TaskDTO) {
 
     function confirmTaskDone() {
         Alert.alert(
@@ -22,6 +23,22 @@ export function Task({
                 {
                     text: 'Sim',
                     onPress: () => doneTask()
+                },
+                {
+                    text: 'Não',
+                    style: 'cancel'
+                }
+            ])
+    }
+
+    function confirmTaskRemove() {
+        Alert.alert(
+            'Remover!',
+            'Deseja remover essa tarefa?',
+            [
+                {
+                    text: 'Sim',
+                    onPress: () => removeTask()
                 },
                 {
                     text: 'Não',
@@ -50,12 +67,14 @@ export function Task({
                     [styles.text,
                     {
                         textDecorationLine: done ? 'line-through' : 'none',
-                        opacity:  done ? 0.2 : 1
+                        opacity: done ? 0.2 : 1
                     }
-                   
-                ]}>{name}</Text>
+
+                    ]}>{name}</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={confirmTaskRemove}
+            >
                 <Image
                     style={styles.img}
                     source={require('../../images/trash.jpg')}

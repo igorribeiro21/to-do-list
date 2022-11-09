@@ -57,6 +57,17 @@ export default function Home() {
         setTotalDone(prevState => (prevState + 1));
     }
 
+    function removeTask(i: number) {
+        const newList = listTasks.filter((task, index) => index !== i);
+        const verifyDone = listTasks.find((task, index) => index === i);
+
+        setListTasks(newList);
+        setTotalCreate(prevState => (prevState - 1));
+
+        if (verifyDone?.finished)
+            setTotalDone(prevState => (prevState - 1));
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -100,10 +111,10 @@ export default function Home() {
                     keyExtractor={item => item.task}
                     renderItem={({ item, index }) => (
                         <Task
-                            index={index}
                             name={item.task}
                             done={item.finished}
                             doneTask={() => doneTask(index)}
+                            removeTask={() => removeTask(index)}
                         />
                     )}
                     showsVerticalScrollIndicator={false}
