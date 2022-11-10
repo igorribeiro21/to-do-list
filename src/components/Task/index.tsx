@@ -6,13 +6,15 @@ interface TaskDTO {
     done: boolean;
     doneTask: () => void;
     removeTask: () => void;
+    notDoneTask: () => void;
 }
 
 export function Task({
     name,
     done,
     doneTask,
-    removeTask
+    removeTask,
+    notDoneTask
 }: TaskDTO) {
 
     function confirmTaskDone() {
@@ -47,14 +49,34 @@ export function Task({
             ])
     }
 
+    function confirmTaskNotDone() {
+        Alert.alert(
+            'Concluir!',
+            'Deseja alterar essa tarefa para não concluída?',
+            [
+                {
+                    text: 'Sim',
+                    onPress: () => notDoneTask()
+                },
+                {
+                    text: 'Não',
+                    style: 'cancel'
+                }
+            ])
+    }
+
     return (
         <View style={styles.container}>
             <View style={done ? styles.finishedDone : styles.finished}>
                 {done ? (
-                    <Image
-                        style={styles.imgDone}
-                        source={require('../../images/check.png')}
-                    />
+                    <TouchableOpacity
+                        onPress={confirmTaskNotDone}
+                    >
+                        <Image
+                            style={styles.imgDone}
+                            source={require('../../images/check.png')}
+                        />
+                    </TouchableOpacity>
                 ) : (
                     <TouchableOpacity
                         onPress={confirmTaskDone}

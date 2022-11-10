@@ -68,6 +68,24 @@ export default function Home() {
             setTotalDone(prevState => (prevState - 1));
     }
 
+    function notDoneTask(i:number) {
+        const newList = listTasks.map((item, index) => {
+            if (index === i) {
+                const updatedItem = {
+                    ...item,
+                    finished: false,
+                };
+
+                return updatedItem;
+            }
+
+            return item;
+        });
+
+        setListTasks(newList);
+        setTotalDone(prevState => (prevState - 1));
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -115,6 +133,7 @@ export default function Home() {
                             done={item.finished}
                             doneTask={() => doneTask(index)}
                             removeTask={() => removeTask(index)}
+                            notDoneTask={() => notDoneTask(index)}
                         />
                     )}
                     showsVerticalScrollIndicator={false}
